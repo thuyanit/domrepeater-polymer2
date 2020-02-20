@@ -1,0 +1,67 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+<dom-module id="domrepeat-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <h4>Cách 1</h4>
+    <div>Danh sách nhân viên:</div>
+    <dom-repeat items="[[staffs]]">
+      <template>
+        <div>[[item.firstname]] [[item.lastname]]</div>
+      </template>
+    </dom-repeat>
+
+    <hr>
+    <h4>Cách 2</h4>
+    <div>Danh sách nhân viên</div>
+    <template is="dom-repeat" items="[[staffs]]">
+      <div>[[item.firstname]] [[item.lastname]]</div>
+    </template>
+
+    <hr>
+    <h4>Nếu không muốn sử dụng "item" mặc định, cũng có thể đặt tên khác bằng as="ten_khac"</h4>
+    <dom-repeat items="[[staffs]]" as="staff">
+      <template>
+        <div>[[staff.firstname]] [[staff.lastname]]</div>
+      </template>
+    </dom-repeat>
+  </template>
+
+  <script>/**
+ * @customElement
+ * @polymer
+ */
+class DomrepeatApp extends Polymer.Element {
+  static get is() {
+    return 'domrepeat-app';
+  }
+
+  static get properties() {
+    return {
+      staffs: {
+        value: () => [{
+          firstname: 'Nguyen Van',
+          lastname: 'A'
+        }, {
+          firstname: 'Nguyen Van',
+          lastname: 'B'
+        }, {
+          firstname: 'Nguyen Van',
+          lastname: 'C'
+        }, {
+          firstname: 'Nguyen Van',
+          lastname: 'D'
+        }]
+      }
+    };
+  }
+
+}
+
+window.customElements.define(DomrepeatApp.is, DomrepeatApp);</script>
+</dom-module>
